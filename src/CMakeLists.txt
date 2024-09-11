@@ -1,10 +1,12 @@
 add_library(sut STATIC run.cpp)
 target_include_directories(sut PUBLIC .)
 
-target_link_libraries(sut PRIVATE asio yaml-cpp)
+target_link_libraries(sut PRIVATE asio yaml-cpp net-common)
 
 add_executable(bootstrap bootstrap.cpp)
-target_link_libraries(bootstrap PRIVATE sut)
+# target_link_libraries(bootstrap PRIVATE sut)
+target_link_libraries(bootstrap PRIVATE net-client) # now void run() in net-client
+
 
 
 if(CMAKE_BUILD_TYPE STREQUAL Debug)

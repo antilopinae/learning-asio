@@ -1,3 +1,3 @@
 git add .
-git commit -m "Added a simple get-response" -a
+git commit -m "Added a message with data type" -a
 git push -u origin main
