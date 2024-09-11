@@ -1,7 +1,7 @@
 add_library(sut STATIC run.cpp)
 target_include_directories(sut PUBLIC .)
 
-target_link_libraries(sut PRIVATE asio)
+target_link_libraries(sut PRIVATE asio yaml-cpp)
 
 add_executable(bootstrap bootstrap.cpp)
 target_link_libraries(bootstrap PRIVATE sut)

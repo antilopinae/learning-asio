@@ -1,3 +1,3 @@
 git add .
-git commit -m "Added dependency Asio to cmake" -a
+git commit -m "Added a simple get-response" -a
 git push -u origin main

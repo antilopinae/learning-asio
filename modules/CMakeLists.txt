@@ -1,4 +1,31 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.26.0)
+
+# find_package(yaml-cpp QUIET)
+# if (NOT yaml-cpp_FOUND)
+# 	message("yaml-cpp not found, cloning git repository")
+# 	find_package(Git)
+# 	if (NOT Git_FOUND)
+# 		message(FATAL_ERROR "Git not found, can't initialize!")
+# 	endif()
+# 	execute_process(
+# 		COMMAND ${GIT_EXECUTABLE} clone
+# 		https://github.com/jbeder/yaml-cpp.git
+# 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/yaml-cpp
+# 	)
+# 	add_subdirectory(yaml-cpp)
+# endif()
+
+
+include(FetchContent)
+FetchContent_Declare(external-yaml-cpp
+	GIT_REPOSITORY
+	https://github.com/jbeder/yaml-cpp.git
+	GIT_TAG 0.8.0
+	SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/yaml-cpp
+)
+FetchContent_MakeAvailable(external-yaml-cpp)
+
+
 
 # set(ASIO_CMAKE_ASIO_SOURCE_DIR "asio")
 set(ASIO_CMAKE_ASIO_TAG "asio-1-31-0")
@@ -85,20 +112,3 @@ elseif(WIN32)
       WIN32_LEAN_AND_MEAN
   )
 endif()
-
-# add_library(my_lib)
-# target_sources(my_lib
-#     PUBLIC
-#         FILE_SET cxx_modules TYPE CXX_MODULES FILES
-#         my_lib.cpp
-# )
-
-# include(ExternalProject)
-# ExternalProject_Add(asio
-#     SOURCE_DIR "asio-1.30.2"
-#     DOWNLOAD_COMMAND ""
-#     CONFIGURE_COMMAND "bash configure"
-#     BUILD_COMMAND "bash compile"
-#     BUILD_IN_SOURCE true
-#     INSTALL_COMMAND "bash install-sh"
-# )
